@@ -2,20 +2,27 @@ package edu.upb.ds.doublelinkedlist;
 
 import java.util.Iterator;
 
-public class List implements ListInterface{
+public class List implements ListInterface,Iterable<ListNode>{
+
+    public ListNode head;
+    public ListNode tail;
+    private ListNode node;
+    private int size;
+
     @Override
     public boolean isEmpty() {
-        return false;
+        return head ==null;
     }
 
     @Override
     public int getSize() {
-        return 0;
+        return size;
     }
 
     @Override
     public void clear() {
-
+        head=null;
+        tail=null;
     }
 
     @Override
@@ -30,7 +37,13 @@ public class List implements ListInterface{
 
     @Override
     public Object get(int index) {
-        return null;
+        int counter=0;
+        ListNode temporalNode=head;
+        while (counter<index){
+            temporalNode=temporalNode.getNext();
+            counter++;
+        }
+        return temporalNode.getObject();
     }
 
     @Override
