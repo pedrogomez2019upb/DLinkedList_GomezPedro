@@ -48,12 +48,20 @@ public class List implements ListInterface,Iterable<ListNode>{
 
     @Override
     public Object search(Object object) {
+        Iterator<ListNode> i = this.iterator();
+        ListNode inode;
+        while (i.hasNext()) {
+            inode = i.next();
+            if (inode.getObject().toString().equals(object.toString())) {
+                return inode;
+            }
+        }
         return null;
     }
 
     @Override
     public void add(Object object) {
-
+        insertTail(object);
     }
 
     @Override
@@ -73,7 +81,24 @@ public class List implements ListInterface,Iterable<ListNode>{
 
     @Override
     public boolean insert(Object ob, Object object) {
-        return false;
+        try {
+            if (ob != null) {
+                ListNode inode = (ListNode) this.search(ob);
+                if (inode.next == null) {
+                    add(object);
+                } else {
+                    ListNode newNode = new ListNode(object);
+                    newNode.next = inode.next;
+                    inode.next = newNode;
+                    size++;
+                }
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
