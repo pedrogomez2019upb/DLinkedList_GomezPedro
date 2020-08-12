@@ -68,7 +68,18 @@ public class List implements ListInterface,Iterable<ListNode>{
 
     @Override
     public void addTail(Object object) {
-
+        if(tail==null){
+            tail = new ListNode(object);
+            head = tail;
+        }
+        else
+        {
+            ListNode temporalNode=tail;
+            ListNode newNode=new ListNode(object);
+            newNode.linkNext(temporalNode);
+            tail=newNode;
+        }
+        size ++;
     }
 
     @Override

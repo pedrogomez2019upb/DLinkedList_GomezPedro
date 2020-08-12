@@ -43,6 +43,11 @@ public class ListNode {
         this.before = before;
     }
 
+    public void linkNext(ListNode n)
+    {
+        next=n;
+    }
+
     @Override
     public String toString() {
         return String.valueOf(object);
