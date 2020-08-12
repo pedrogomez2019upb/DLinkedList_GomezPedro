@@ -87,7 +87,7 @@ public class List implements ListInterface,Iterable<ListNode>{
                 if (inode.next == null) {
                     add(object);
                 } else {
-                    ListNode newNode = new ListNode();
+                    ListNode newNode = new ListNode(object);
                     newNode.next = inode.next;
                     inode.next = newNode;
                     size++;
