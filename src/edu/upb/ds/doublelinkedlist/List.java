@@ -259,6 +259,13 @@ public class List implements ListInterface,Iterable<ListNode>{
 
     @Override
     public ListNode rec(ListNode list) {
-        return null;
+            if(node.next ==null){
+                System.out.println(node.toString());
+            }
+            else{
+                System.out.println(node.toString());
+                return rec(node.next);
+            }
+            return null;
     }
 }
