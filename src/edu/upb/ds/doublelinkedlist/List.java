@@ -27,7 +27,8 @@ public class List implements ListInterface,Iterable<ListNode>{
 
     @Override
     public Object getHead() {
-        return null;
+            Object headObject = head.getObject();
+            return headObject;
     }
 
     @Override
