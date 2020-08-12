@@ -84,7 +84,13 @@ public class List implements ListInterface,Iterable<ListNode>{
 
     @Override
     public void addEnd(Object object) {
-
+        if(!isEmpty()){
+            tail.next=new ListNode(object);
+            tail=tail.next;
+        }else {
+            head=tail=new ListNode(object);
+        }
+        size++;
     }
 
     @Override
