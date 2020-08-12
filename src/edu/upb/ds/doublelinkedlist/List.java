@@ -33,7 +33,8 @@ public class List implements ListInterface,Iterable<ListNode>{
 
     @Override
     public Object getTail() {
-        return null;
+        Object tailObject = tail.getObject();
+        return tailObject;
     }
 
     @Override
