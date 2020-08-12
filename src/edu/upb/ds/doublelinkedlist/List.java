@@ -118,12 +118,26 @@ public class List implements ListInterface,Iterable<ListNode>{
 
     @Override
     public void remove(int position) {
-
+        ListNode aux = head;
+        for (int i = 0; i < position - 1; i++)
+        {
+            aux = aux.getNext();
+        }
+        ListNode nNext = aux.getNext();
+        aux.setNext(nNext.getNext());
+        size--;
     }
 
     @Override
     public void removeTail(int position) {
-
+        ListNode aux = head;
+        for (int i = 0; i < position - 1; i++)
+        {
+            aux = aux.getNext();
+        }
+        ListNode nNext = aux.getNext();
+        aux.setNext(nNext.getNext());
+        size--;
     }
 
     @Override
