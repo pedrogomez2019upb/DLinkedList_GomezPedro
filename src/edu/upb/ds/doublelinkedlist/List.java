@@ -127,7 +127,16 @@ public class List implements ListInterface,Iterable<ListNode>{
 
     @Override
     public boolean insertTail(Object object) {
-        return false;
+        if(!isEmpty()){
+            tail=new ListNode(object,null,tail);
+            tail.before.next=tail;
+        }
+        else{
+            head=tail=new ListNode(object);
+
+        }
+        size++;
+        return true;
     }
 
     @Override
@@ -237,6 +246,7 @@ public class List implements ListInterface,Iterable<ListNode>{
 
     @Override
     public void toList() {
+
 
     }
 
