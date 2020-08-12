@@ -157,12 +157,33 @@ public class List implements ListInterface,Iterable<ListNode>{
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        Object[] array= new Object[size];
+        ListNode node= head;
+        for (int i=0; i<size; i++){
+            array[i]=node;
+            node= node.next;
+        }
+        return array;
     }
 
     @Override
     public Object[] toArray(Object[] object) {
-        return new Object[0];
+        try {
+            ListNode node = head;
+            int sizeArray = object.length;
+            int x = 0;
+            object = new Object[size];
+            object[0] = head.getObject();
+
+            do {
+                node = node.next;
+                x++;
+                object[x] = node.getObject();
+            } while (x <= sizeArray);
+            return object;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override
