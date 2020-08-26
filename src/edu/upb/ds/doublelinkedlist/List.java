@@ -6,7 +6,7 @@ public class List implements ListInterface,Iterable<ListNode>{
 
     public ListNode head;
     public ListNode tail;
-    private ListNode node;
+    private ListNode inode;
     private int size;
 
     @Override
@@ -95,7 +95,15 @@ public class List implements ListInterface,Iterable<ListNode>{
 
     @Override
     public boolean insert(ListNode node, Object object) {
-        return false;
+        if (node.next == null) {
+            add(object);
+        } else {
+            ListNode temporalNode = new ListNode(object);
+            temporalNode.next = node.next;
+            temporalNode.prev = node;
+            node.next = temporalNode;
+        }
+        return true;
     }
 
     @Override
@@ -187,7 +195,25 @@ public class List implements ListInterface,Iterable<ListNode>{
 
     @Override
     public Iterator<ListNode> iterator() {
-        return null;
+        inode = head;
+        Iterator<ListNode> i = new Iterator<ListNode>() {
+            @Override
+            public boolean hasNext() {
+                return inode.next != null ? true : false;
+            }
+
+            @Override
+            public ListNode next() {
+                if (hasNext()) {
+                    ListNode tmp = inode;
+                    inode = inode.next;
+                    return tmp;
+                } else {
+                    return null;
+                }
+            }
+        };
+        return i;
     }
 
     @Override
@@ -259,12 +285,12 @@ public class List implements ListInterface,Iterable<ListNode>{
 
     @Override
     public ListNode rec(ListNode list) {
-            if(node.next ==null){
-                System.out.println(node.toString());
+            if(inode.next ==null){
+                System.out.println(inode.toString());
             }
             else{
-                System.out.println(node.toString());
-                return rec(node.next);
+                System.out.println(inode.toString());
+                return rec(inode.next);
             }
             return null;
     }
