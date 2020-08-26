@@ -100,7 +100,7 @@ public class List implements ListInterface,Iterable<ListNode>{
         } else {
             ListNode temporalNode = new ListNode(object);
             temporalNode.next = node.next;
-            temporalNode.prev = node;
+            temporalNode.before = node;
             node.next = temporalNode;
         }
         return true;
