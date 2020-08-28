@@ -1,5 +1,6 @@
 package edu.upb.ds.doublelinkedlist;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class List implements ListInterface,Iterable<ListNode>{
@@ -156,7 +157,26 @@ public class List implements ListInterface,Iterable<ListNode>{
 
     @Override
     public boolean set(ListNode node, Object object) {
-        return false;
+        ListNode variousNodes = head.before;
+        ListNode temporalHead = head;
+        boolean result = false;
+        while (temporalHead != null) {
+            if (temporalHead.isEquals(node.getObject())) {
+                ListNode temporalNode = new ListNode(object);
+                temporalNode.before = variousNodes;
+                temporalNode.next = temporalHead.next;
+                if (variousNodes == null) {
+                    head = temporalNode;
+                } else {
+                    variousNodes.next = temporalNode;
+                }
+                result = true;
+                break;
+            }
+            temporalHead = temporalHead.next;
+            variousNodes = temporalHead.before;
+        }
+        return result;
     }
 
     @Override
@@ -185,7 +205,16 @@ public class List implements ListInterface,Iterable<ListNode>{
 
     @Override
     public boolean contains(Object object) {
-        return false;
+        ListNode temporalNode = head;
+        boolean result = false;
+        while (temporalNode.next != null) {
+            temporalNode = temporalNode.next;
+            if (temporalNode == object) {
+                result = true;
+                break;
+            }
+        }
+        return result;
     }
 
     @Override
@@ -269,18 +298,38 @@ public class List implements ListInterface,Iterable<ListNode>{
 
     @Override
     public List subList(ListNode from, ListNode to) {
-        return null;
+        List newList = new List();
+        ListNode temporalNode = head;
+        while (temporalNode.next != null) {
+            temporalNode = temporalNode.next;
+            if (temporalNode == from) {
+                newList.add(temporalNode);
+                while (temporalNode != to) {
+                    temporalNode = temporalNode.next;
+                    newList.add(temporalNode);
+                }
+                break;
+            }
+        }
+        newList.head.before = null;
+        newList.tail.next = null;
+        return newList;
     }
 
     @Override
     public List sortList() {
-        return null;
+        List newList = new List();
+        Object[] newArray = toArray();
+        Arrays.sort(newArray);
+        clear();
+        for (int i = 0; i < size; i++) {
+            newList.add(newArray[i]);
+        }
+        return newList;
     }
 
     @Override
     public void toList() {
-
-
     }
 
     @Override

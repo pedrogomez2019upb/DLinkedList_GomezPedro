@@ -48,6 +48,16 @@ public class ListNode {
         next=n;
     }
 
+    public boolean isEquals(Object objeto) {
+        Object originalObject = this.object;
+        Object newObject = objeto;
+        if (String.valueOf(originalObject).equals(String.valueOf(newObject))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     @Override
     public String toString() {
         return String.valueOf(object);
